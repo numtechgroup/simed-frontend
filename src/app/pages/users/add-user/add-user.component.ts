@@ -47,8 +47,8 @@ export class AddUserComponent implements OnInit {
             title: 'Success',
             text: 'Utilisateur enregistré avec succés',
             timer: 1000
-          })
-          this._router.navigateByUrl('/#/home/users')
+          }),
+          window.location.reload();
         },
         error(err) {
           Swal.fire({
@@ -61,4 +61,7 @@ export class AddUserComponent implements OnInit {
         },
       })
      }
+     reloadPage(): void {
+      window.location.reload();
+    }
 }

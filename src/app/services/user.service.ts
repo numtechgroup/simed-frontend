@@ -85,7 +85,13 @@ export class UserService {
   }
 
   createUser(data) {
-    return this._httpClient.post<any>(`${environment.apiUrl}/api/auth/addUser`, data).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this._httpClient.post<any>(`${environment.apiUrl}/api/auth/addUser`, data, httpOptions).pipe(
       map((response: any) => {
         console.log(response);
         return response;
@@ -99,7 +105,6 @@ export class UserService {
         const userToken: UserToken = response.results;
         localStorage.setItem('userPassword-token', JSON.stringify(userToken));
         this.tokenPasswordSubject.next(userToken);
-        console.log('the response', this.tokenPasswordSubject.value);
         return response;
       })
     )
@@ -112,8 +117,6 @@ export class UserService {
         'Authorization': 'Bearer ' + this.tokenPasswordSubject.value ,
       })
     };
-    console.log('entete',httpOptions);
-    console.log('code token',this.tokenPasswordSubject.value)
     return this._httpClient.post<any>(`${environment.apiUrl}/api/password/reset`, data, httpOptions).pipe(
       map((response: any) =>{
         console.log('the response', response);

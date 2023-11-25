@@ -16,9 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   form:FormGroup ;
   submitted = false;
   isLoggedIn = false;
-  isLoginFailed = false;
   errorMessage = '';
-feedbackField: any;
 
 
   constructor(
@@ -35,7 +33,7 @@ feedbackField: any;
       this.isLoggedIn = true;
     }
     this.form = this._formBuilder.group({
-      email: ['',  [Validators.required, Validators.email]],
+      email: ['',  [Validators.required, Validators.email] ],
     });
   }
 
@@ -67,10 +65,6 @@ feedbackField: any;
     if (!this.form) {
       return;
     }
-    const payload = Object.assign({}, this.form.value);
-    const formData = new FormData();
-    formData.append('email', payload.email);
-    console.log('Identifiants',payload)
     this.userService.modifyPassword(this.form.value).pipe(first()).
     subscribe({
       next: (response:any) => {
@@ -78,17 +72,12 @@ feedbackField: any;
           icon: 'success',
           title: 'Success',
           text: 'Une notification vous a été envoyée par mail',
-          timer: 10000
+          timer: 3000
         }),
         console.log('message', response);
       },
       error: (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur',
-          text: 'Email non renseigné / incorrect',
-          timer: 1000
-        }),
+        this.errorMessage = err.error.errors.msg
         console.error(err);
       }
     });

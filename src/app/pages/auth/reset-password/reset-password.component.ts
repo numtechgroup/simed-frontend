@@ -14,10 +14,8 @@ import Swal from 'sweetalert2';
 export class ResetPasswordComponent {
     resetForm : FormGroup;
     submitted = false;
-  isLoggedIn = false;
-  authenticated = false;
-  errorMessage = '';
-feedbackField: any;
+    authenticated = false;
+    errorMessage = '';
 
 
   constructor(
@@ -34,8 +32,8 @@ feedbackField: any;
       this.authenticated = true;
     }
     this.resetForm = this._formBuilder.group({
-      verificationCode: ['', Validators.required],
-      new_password: ['', Validators.required ],
+      verificationCode: ['', Validators.required, Validators.maxLength(10)],
+      new_password: ['', Validators.required, Validators.minLength(8),],
     });
   }
 
@@ -44,23 +42,27 @@ feedbackField: any;
   }
 
   getErrorMessage(control: AbstractControl): string {
-    // Don't say anything if control doesn't exist, or is valid
     if (!control || control.valid) {
       return '';
     }
+
     // Required always comes first
     if (control.hasError('required')) {
-      return "Cannot be empty";
+      return 'Cannot be empty';
     }
-    if (control.hasError('verificationCode')) {
-      return "Must be a valid code";
+    if (control.hasError('minlength')) {
+      const limit = control.getError('minlength').requiredLength;
+      return `Must be at least ${limit} characters`;
     }
-    if (control.hasError("new_password")){
-      return "Must be a valid password";
+    if (control.hasError('minlength')) {
+      const limit = control.getError('maxlength').requiredLength;
+      return `Must be no more than ${limit} characters`;
     }
+
+    return 'Invalid input';
   }
 
-  get code(): AbstractControl {
+  get verificationCode(): AbstractControl {
     return this.resetForm.get('verificationCode');
   }
   get new_password(): AbstractControl {
@@ -81,17 +83,13 @@ feedbackField: any;
           icon: 'success',
           title: 'Success',
           text: 'Votre mot de passe a été changé avec succès !',
-          timer: 5000
+          timer: 2000
         }),
         console.log('message', response);
+        this._router.navigateByUrl('login');
       },
       error: (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur',
-          text: 'Code non renseigné / incorrect',
-          timer: 4000
-        }),
+        this.errorMessage = err.error.errors.msg;
         console.error(err);
       }
     });

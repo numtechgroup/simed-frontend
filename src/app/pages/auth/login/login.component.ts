@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -46,6 +46,29 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  getErrorMessage(control: AbstractControl): string {
+    if (!control || control.valid) {
+      return '';
+    }
+    // Required always comes first
+    if (control.hasError('required')) {
+      return "Cannot be empty";
+    }
+    if (control.hasError('email')) {
+      return "Must be a valid email";
+    }
+    if (control.hasError("password")) {
+      return "Must be a valid password";
+    }
+  }
+
+  get email(): AbstractControl {
+    return this.loginForm.get('email');
+  }
+  get password(): AbstractControl {
+    return this.loginForm.get('password');
+  }
+
 
   login(){
     this.submitted = true;
@@ -83,7 +106,7 @@ export class LoginComponent implements OnInit {
                   }
         },
       error: (err) => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error.errors;
         this.isLoginFailed = true;
         console.error(err);
       }
