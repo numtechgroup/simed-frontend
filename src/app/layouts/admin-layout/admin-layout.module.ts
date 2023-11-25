@@ -16,6 +16,7 @@ import { DoctorsComponent } from 'src/app/pages/doctors/doctors.component';
 import { FoldersComponent } from 'src/app/pages/doctors/folders/folders.component';
 import { AppointmentsComponent } from 'src/app/pages/patients/appointments/appointments.component';
 import { ListPatientsComponent } from 'src/app/pages/patients/list-patients/list-patients.component';
+import { AddUserComponent } from 'src/app/pages/users/add-user/add-user.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ListPatientsComponent } from 'src/app/pages/patients/list-patients/list
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule
@@ -36,7 +38,8 @@ import { ListPatientsComponent } from 'src/app/pages/patients/list-patients/list
     DoctorsComponent,
     FoldersComponent,
     AppointmentsComponent,
-    ListPatientsComponent
+    ListPatientsComponent,
+    AddUserComponent,
   ]
 })
 

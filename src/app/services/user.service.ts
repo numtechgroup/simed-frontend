@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
@@ -12,10 +12,11 @@ import { UserToken } from '../models/user-token';
 export class UserService {
   private tokenSubject: BehaviorSubject<UserToken>;
   private token : Observable<UserToken>;
- private _fetchedUser : BehaviorSubject<User[] | null> = new BehaviorSubject<User[] | null>(null);
+  private _fetchedUser : BehaviorSubject<User[] | null> = new BehaviorSubject<User[] | null>(null);
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
   userLoggedIn: any;
+  private tokenPasswordSubject: BehaviorSubject<UserToken>;
 
   constructor(private readonly _httpClient: HttpClient,
               private router:Router) {
@@ -23,6 +24,7 @@ export class UserService {
         JSON.parse(localStorage.getItem('currentUser') || '{}'));
       this.currentUser = this.currentUserSubject.asObservable();
       this.tokenSubject = new BehaviorSubject<UserToken>(JSON.parse(localStorage.getItem('user-token')));
+      this.tokenPasswordSubject = new BehaviorSubject<UserToken>(JSON.parse(localStorage.getItem('userPassword-token')));
       this.token = this.tokenSubject.asObservable();
   }
 
@@ -30,7 +32,7 @@ export class UserService {
     return this._httpClient.post<any>(`${environment.apiUrl}/api/auth/login`, { email, password }).pipe(
         map(response => {
           const userToken: UserToken = response.results.token;
-          console.log(userToken);
+          // console.log(userToken);
           if (response && response.results.token) {
             localStorage.setItem('user-token', JSON.stringify(userToken));
             localStorage.setItem('currentUser', JSON.stringify(response.results.user));
@@ -70,7 +72,7 @@ export class UserService {
   get UserRole(): string {
 
     const userRole = this.userLoggedIn?.results?.user?.role;
-    console.log('role', userRole)
+    // console.log('role', s)
     if (userRole != null && userRole != undefined) {
       return userRole;
     } else {
@@ -82,10 +84,42 @@ export class UserService {
     return localStorage.getItem('user-token');
   }
 
-  createUser(data: Object) {
+  createUser(data) {
+    return this._httpClient.post<any>(`${environment.apiUrl}/api/auth/addUser`, data).pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      })
+    );
+  }
 
-    const apiUrl = `${environment.apiUrl}api/auth/addUser`;
-    return this._httpClient.post(apiUrl, data);
+  modifyPassword(data){
+    return this._httpClient.post<any>(`${environment.apiUrl}/api/password/forgot`, data).pipe(
+      map((response: any) =>{
+        const userToken: UserToken = response.results;
+        localStorage.setItem('userPassword-token', JSON.stringify(userToken));
+        this.tokenPasswordSubject.next(userToken);
+        console.log('the response', this.tokenPasswordSubject.value);
+        return response;
+      })
+    )
+  }
+
+  changePassword(data){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenPasswordSubject.value ,
+      })
+    };
+    console.log('entete',httpOptions);
+    console.log('code token',this.tokenPasswordSubject.value)
+    return this._httpClient.post<any>(`${environment.apiUrl}/api/password/reset`, data, httpOptions).pipe(
+      map((response: any) =>{
+        console.log('the response', response);
+        return response;
+      })
+    )
   }
 
   getAllUsers(): Observable<User[]> {

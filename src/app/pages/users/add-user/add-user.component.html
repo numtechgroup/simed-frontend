@@ -1,0 +1,162 @@
+<form method="post" [formGroup]="addUserForm">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="prenom">Prenom</label>
+        <input formControlName="prenom" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Prenom">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input formControlName="nom" type="text" placeholder="Nom" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="gender">Genre</label>
+        <select formControlName="genre" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let gender of genders" value="{{gender}}" >{{gender}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input formControlName="adresse" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Adresse">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nom">Telephone</label>
+        <input formControlName="telephone" type="number" placeholder="Telephone" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="gender">Role</label>
+        <select formControlName="role" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let role of roles" value="{{role}}" >{{role}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+          </div>
+          <input formControlName="email" class="form-control" placeholder="Email" type="email">
+          <div class="alert alert-danger" role="alert" *ngIf="f.email.errors">
+            Email is required!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="password">Mot de Passe</label>
+        <div class="input-group mb-4">
+          <input formControlName="password" type="password" class="form-control" placeholder="mot de passe">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="password">Confirmation Mot de Passe</label>
+        <div class="input-group mb-4">
+          <input formControlName="new_password" type="password" class="form-control" placeholder="repetez le mot de passe">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+      <button type="button" class="btn btn-info float-right" (click)="addUser()">Save</button>
+      <button type="button" class="btn btn-danger float-right mr-2" mat-dialog-close>Close</button>
+  </div>
+</form>
+
+
+<!-- <form method="post" [formGroup]="addingForm">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="prenom">Date Debut</label>
+        <input formControlName="dateDebut" type="date" class="form-control" id="exampsleFormControlInput1" placeholder="Debut">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="prenom">Date Fin</label>
+        <input formControlName="dateFin" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Fin">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="adresse">Type de Reduction</label>
+        <input formControlName="typeDeReduction" type="text" class="form-control" id="exampleFormControlInput1" placeholder="type">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="adresse">Code de Reduction</label>
+        <input formControlName="codeDeReduction" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Code">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="adresse">Montant de Reduction</label>
+        <input formControlName="montantDeReduction" type="number" class="form-control" id="exampleFormControlInput1" placeholder="montant">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="gender">Age Cible</label>
+        <select formControlName="ageCible" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let age of ages" value="{{age}}" >{{age}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="gender">Sexe Cible</label>
+        <select formControlName="sexeCible" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let sexe of sexes" value="{{sexe}}" >{{sexe}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="adresse">Quantite</label>
+        <input formControlName="quantityBon" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantite">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="adresse">Localisation</label>
+        <input formControlName="localisation" type="text" class="form-control" id="exampleFormControlInput1" placeholder="localisation">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="adresse">Image</label>
+        <input formControlName="image" type="file" class="form-control" id="exampleFormControlInput1" placeholder="Image">
+      </div>
+    </div>
+  </div>
+  <div>
+      <button class="btn btn-info float-right" (click)="addBon()">Save</button>
+      <button class="btn btn-danger float-right mr-2" mat-dialog-close>Close</button>
+  </div>
+</form> -->

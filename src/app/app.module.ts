@@ -14,7 +14,6 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AuthInterceptorInterceptor } from './_helpers/auth-interceptor.interceptor';
-import { ListPatientsComponent } from './pages/patients/list-patients/list-patients.component';
 
 
 @NgModule({
@@ -26,7 +25,7 @@ import { ListPatientsComponent } from './pages/patients/list-patients/list-patie
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   declarations: [
     AppComponent,
