@@ -10,6 +10,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from "@angular/material/dialog";
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';

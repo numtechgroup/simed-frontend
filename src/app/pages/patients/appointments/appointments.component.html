@@ -1,1 +1,15 @@
-<p>appointments works!</p>
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <button class="btn btn-primary align-self-end" > Prendre RV</button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-2">
+  <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
+    <ng-template #eventContent let-arg>
+      <b>{{ arg.timeText }}</b>
+      <i>{{ arg.event.title }}</i>
+    </ng-template>
+  </full-calendar>
+</div>

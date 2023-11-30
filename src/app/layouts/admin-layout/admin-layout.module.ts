@@ -17,7 +17,9 @@ import { FoldersComponent } from 'src/app/pages/doctors/folders/folders.componen
 import { AppointmentsComponent } from 'src/app/pages/patients/appointments/appointments.component';
 import { ListPatientsComponent } from 'src/app/pages/patients/list-patients/list-patients.component';
 import { AddUserComponent } from 'src/app/pages/users/add-user/add-user.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 // import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   imports: [
@@ -27,7 +29,8 @@ import { AddUserComponent } from 'src/app/pages/users/add-user/add-user.componen
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    FullCalendarModule
   ],
   declarations: [
     DashboardComponent,
