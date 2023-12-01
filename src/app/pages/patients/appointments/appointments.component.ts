@@ -26,7 +26,7 @@ export class AppointmentsComponent {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     initialView: 'dayGridMonth',
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    initialEvents: INITIAL_EVENTS,
     weekends: true,
     editable: true,
     selectable: true,
