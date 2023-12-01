@@ -18,6 +18,8 @@ import { AppointmentsComponent } from 'src/app/pages/patients/appointments/appoi
 import { ListPatientsComponent } from 'src/app/pages/patients/list-patients/list-patients.component';
 import { AddUserComponent } from 'src/app/pages/users/add-user/add-user.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { AddDisponibilityComponent } from 'src/app/pages/doctors/disponibilities/add-disponibility/add-disponibility.component';
+import { DisponibilitiesComponent } from 'src/app/pages/doctors/disponibilities/disponibilities.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -43,6 +45,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AppointmentsComponent,
     ListPatientsComponent,
     AddUserComponent,
+    AddDisponibilityComponent,
+    DisponibilitiesComponent
   ]
 })
 

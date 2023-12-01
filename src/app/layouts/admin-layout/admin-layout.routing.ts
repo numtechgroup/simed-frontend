@@ -12,6 +12,7 @@ import { DoctorResolver } from 'src/app/pages/doctors/doctor.resolver';
 import { AppointmentsComponent } from 'src/app/pages/patients/appointments/appointments.component';
 import { FoldersComponent } from 'src/app/pages/doctors/folders/folders.component';
 import { ListPatientsComponent } from 'src/app/pages/patients/list-patients/list-patients.component';
+import { DisponibilitiesComponent } from 'src/app/pages/doctors/disponibilities/disponibilities.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboardAdmin',   component: DashboardComponent, canActivate: [AuthGuardGuard]},
@@ -24,6 +25,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'appointments',       component: AppointmentsComponent },
     { path: 'folders',       component: FoldersComponent },
     { path: 'bookings',       component: AppointmentsComponent },
+    { path: 'disponibilities',       component: DisponibilitiesComponent },
+
 
 
 

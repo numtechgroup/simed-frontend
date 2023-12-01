@@ -22,7 +22,7 @@ export const ROUTES: RouteInfo[] = [
     // doctor
     { path: '/home/dashboardDoctor', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '', type:'docteur' },
     { path: '/home/patients', title: 'Patients',  icon: 'ni-single-02 text-red', class: '', type:'docteur' },
-    { path: '/home/bookings', title: 'Mes RVs',  icon: 'ni-calendar-grid-58 text-blue', class: '', type:'docteur' },
+    { path: '/home/disponibilities', title: 'Mes RVs',  icon: 'ni-calendar-grid-58 text-blue', class: '', type:'docteur' },
     { path: '/home/folders', title: 'Dossiers Medicaux',  icon: 'ni-books text-blue', class: '', type:'docteur' },
     // { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '', type:'admin' },
     // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '', type:'admin' },
