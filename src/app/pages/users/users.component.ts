@@ -15,8 +15,7 @@ export class UsersComponent {
 
 
    constructor(public dialog: MatDialog,
-                private _userService: UserService,private modalService: NgbModal
-    ) { }
+                private _userService: UserService) { }
 
   ngOnInit(): void {
     this._userService.fetchedUsers$.subscribe({

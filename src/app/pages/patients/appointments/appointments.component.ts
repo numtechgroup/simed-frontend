@@ -5,6 +5,9 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
+import { DoctorService } from 'src/app/services/doctor.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddDisponibilityComponent } from '../../doctors/disponibilities/add-disponibility/add-disponibility.component';
 
 
 @Component({
@@ -25,7 +28,7 @@ export class AppointmentsComponent {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    initialView: 'dayGridMonth',
+    initialView: 'timeGridWeek',
     initialEvents: INITIAL_EVENTS,
     weekends: true,
     editable: true,
@@ -43,7 +46,7 @@ export class AppointmentsComponent {
   });
   currentEvents = signal<EventApi[]>([]);
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef, private doctorService: DoctorService, private dialog: MatDialog) {
   }
   handleCalendarToggle() {
     this.calendarVisible.update((bool) => !bool);
@@ -56,21 +59,25 @@ export class AppointmentsComponent {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
+    const dialogRef = this.dialog.open(AddDisponibilityComponent, {
+      data: { selectedDate: selectInfo.startStr }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any result from the dialog if needed
+      console.log('Dialog closed with result:', result);
+    });    // const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
 
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      });
+      // calendarApi.addEvent(
+      //   {
+      //   id: createEventId(),
+      //   start: selectInfo.startStr,
+      //   end: selectInfo.endStr,
+      // });
     }
-  }
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {

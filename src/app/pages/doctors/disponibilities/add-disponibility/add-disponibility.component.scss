@@ -1,0 +1,12 @@
+/* Add this to your CSS file */
+.larger-form {
+  width: 80%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the form on the page */
+}
+
+/* Optionally, adjust the width of the form controls */
+.larger-form input[type="date"],
+.larger-form input[type="time"],
+.larger-form input[type="text"] {
+  width: 100%;
+}

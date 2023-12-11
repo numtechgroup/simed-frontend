@@ -20,6 +20,8 @@ import { AddUserComponent } from 'src/app/pages/users/add-user/add-user.componen
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AddDisponibilityComponent } from 'src/app/pages/doctors/disponibilities/add-disponibility/add-disponibility.component';
 import { DisponibilitiesComponent } from 'src/app/pages/doctors/disponibilities/disponibilities.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDisponibilityComponent } from 'src/app/pages/doctors/disponibilities/delete-disponibility/delete-disponibility.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -32,7 +34,8 @@ import { DisponibilitiesComponent } from 'src/app/pages/doctors/disponibilities/
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatDialogModule
   ],
   declarations: [
     DashboardComponent,
@@ -46,7 +49,8 @@ import { DisponibilitiesComponent } from 'src/app/pages/doctors/disponibilities/
     ListPatientsComponent,
     AddUserComponent,
     AddDisponibilityComponent,
-    DisponibilitiesComponent
+    DisponibilitiesComponent,
+    DeleteDisponibilityComponent
   ]
 })
 

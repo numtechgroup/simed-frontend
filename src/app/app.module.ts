@@ -10,13 +10,10 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from "@angular/material/dialog";
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AuthInterceptorInterceptor } from './_helpers/auth-interceptor.interceptor';
-import { DisponibilitiesComponent } from './pages/doctors/disponibilities/disponibilities.component';
-import { AddDisponibilityComponent } from './pages/doctors/disponibilities/add-disponibility/add-disponibility.component';
 
 
 @NgModule({

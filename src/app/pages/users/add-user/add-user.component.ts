@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
-import { TestService } from 'src/app/services/test.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 

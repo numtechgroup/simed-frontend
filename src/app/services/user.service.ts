@@ -132,7 +132,6 @@ export class UserService {
         'Authorization': 'Bearer ' + this.tokenSubject.value,
       })
     };
-    console.log(httpOptions);
        return this._httpClient.get<User[]>(`${environment.apiUrl}/api/users`, httpOptions)
        .pipe(
         tap(nodes => this._fetchedUser.next(nodes)),
@@ -140,7 +139,7 @@ export class UserService {
   }
 
   get fetchedUsers$(): Observable<User[] | null> {
-        return this._fetchedUser.asObservable()
+    return this._fetchedUser.asObservable()
   }
 
   public get userValue(): User | null {
