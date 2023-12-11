@@ -1,15 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput } from '@fullcalendar/core';
+import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDisponibilityComponent } from './add-disponibility/add-disponibility.component';
 import { DoctorService } from 'src/app/services/doctor.service';
-import { Disponibility } from 'src/app/models/disponibility';
-import Swal from 'sweetalert2';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { map } from 'rxjs';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { INITIAL_EVENTS } from '../../patients/appointments/event-utils';
 import { DeleteDisponibilityComponent } from './delete-disponibility/delete-disponibility.component';
 @Component({
   selector: 'app-disponibilities',
@@ -92,13 +88,6 @@ export class DisponibilitiesComponent implements OnInit {
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect();
-
-      // calendarApi.addEvent(
-      //   {
-      //   id: createEventId(),
-      //   start: selectInfo.startStr,
-      //   end: selectInfo.endStr,
-      // });
     }
 
   handleEventClick(clickInfo: EventClickArg) {
@@ -108,13 +97,10 @@ export class DisponibilitiesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
-        // L'utilisateur a confirmé la suppression
         this.deleteEvent(clickInfo.event.id);
       }
     });
-    // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-    //   clickInfo.event.remove();
-    // }
+
   }
 
   handleEvents(events: EventApi[]) {
@@ -123,6 +109,6 @@ export class DisponibilitiesComponent implements OnInit {
   }
   deleteEvent(id) {
     this.doctorService.deleteSingleEvent(id).subscribe((data: any) => {});
-
+    window.location.reload();
   }
 }

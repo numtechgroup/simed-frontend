@@ -91,7 +91,7 @@ export class AddDisponibilityComponent {
             text: 'Disponibilité créee avec succès',
             timer: 1000
           })
-          // window.location.reload();
+          window.location.reload();
         },
         error(err) {
           Swal.fire({

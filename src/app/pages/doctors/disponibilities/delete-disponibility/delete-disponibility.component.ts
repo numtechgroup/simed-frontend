@@ -15,7 +15,6 @@ export class DeleteDisponibilityComponent {
 
   }
   confirmDelete(): void {
-    // Ferme la boîte de dialogue avec le résultat 'confirm'
     this.dialogRef.close('confirm');
   }
 }
