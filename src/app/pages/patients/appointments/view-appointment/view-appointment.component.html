@@ -1,0 +1,60 @@
+<!-- <div class="modal-header">
+  <h4 class="modal-title pull-center">Rendez Vous <span style="color: rgb(0, 98, 255);"></span></h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div> -->
+<h2 mat-dialog-title>Rendez vous / Consultation
+  <mat-icon style="cursor: pointer;" (click)="deleteAppointmentById(fetchedAppointment._id)">delete</mat-icon>
+  <!-- <button mat-icon-button class="delete-button" color="warn">
+  </button> -->
+</h2>
+
+<mat-dialog-content>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <mat-form-field style="width: 80%;">
+      <input matInput type="text" readonly value="{{ fetchedAppointment.doctorId }}" placeholder="Doctor ID">
+    </mat-form-field>
+    <mat-form-field style="width: 80%;">
+      <input matInput type="text" readonly value="{{ fetchedAppointment.date }}" placeholder="Appointment Date">
+    </mat-form-field>
+    <mat-form-field style="width: 80%;">
+      <input matInput type="text" readonly value="{{ fetchedAppointment.timeAppointment }}" placeholder="Appointment Time">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn btn-danger" mat-button matDialogClose>fermer</button>
+</mat-dialog-actions>
+
+
+
+<!-- <div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" style="background-color: rgb(0, 98, 255);">
+            <h4 class="card-title" style="color: white">Informations</h4>
+          </div>
+          <div class="card-body">
+            <div *ngIf="fetchedAppointment" class="alert alert-primary" style="border-radius: 10px; padding-left: 10px;">
+              <h3 class="mb-4">Medecin: Dr {{ fetchedAppointment.doctorId }}</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Date:</h5>
+                  <p>{{ fetchedAppointment.date | date: 'medium' }}</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>Heure:</h5>
+                  <p>{{ fetchedAppointment.timeAppointment }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MatInputModule } from '@angular/material/input';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MatIconModule } from '@angular/material/icon'
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/admin/dashboard/dashboard.component';
@@ -22,8 +23,13 @@ import { AddDisponibilityComponent } from 'src/app/pages/doctors/disponibilities
 import { DisponibilitiesComponent } from 'src/app/pages/doctors/disponibilities/disponibilities.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteDisponibilityComponent } from 'src/app/pages/doctors/disponibilities/delete-disponibility/delete-disponibility.component';
+import { AddAppointmentsComponent } from 'src/app/pages/patients/appointments/add-appointments/add-appointments.component';
+import { DeleteAppointmentComponent } from 'src/app/pages/patients/appointments/delete-appointment/delete-appointment.component';
+import { ViewAppointmentComponent } from 'src/app/pages/patients/appointments/view-appointment/view-appointment.component';
 // import { ToastrModule } from 'ngx-toastr';
-
+// import {
+//   MatFormFieldModule,
+//   MatInputModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -35,7 +41,9 @@ import { DeleteDisponibilityComponent } from 'src/app/pages/doctors/disponibilit
     NgbModule,
     ClipboardModule,
     FullCalendarModule,
-    MatDialogModule
+    MatInputModule,
+    MatDialogModule,
+    MatIconModule
   ],
   declarations: [
     DashboardComponent,
@@ -50,7 +58,10 @@ import { DeleteDisponibilityComponent } from 'src/app/pages/doctors/disponibilit
     AddUserComponent,
     AddDisponibilityComponent,
     DisponibilitiesComponent,
-    DeleteDisponibilityComponent
+    DeleteDisponibilityComponent,
+    AddAppointmentsComponent,
+    DeleteAppointmentComponent,
+    ViewAppointmentComponent,
   ]
 })
 

@@ -1,0 +1,33 @@
+<form method="post" [formGroup]="appointForm">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="docteur">Docteur</label>
+          <select formControlName="doctorId" class="form-control" id="exampleFormControlSelect1">
+            <option *ngFor="let doctor of doctorOptions" value="{{doctor.id}}" >{{doctor.name}}</option>
+          </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input formControlName="date" type="date" class="form-control" id="exampleFormControlInput1">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="heure">Heure</label>
+        <input formControlName="timeAppointment" type="time" class="form-control" id="exampleFormControlInput1">
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-info float-right" (click)="addAppointment()">Save</button>
+    <button class="btn btn-danger float-right mr-2" mat-dialog-close>Close</button>
+  </div>
+  <!-- <div class="alert alert-danger" role="alert" *ngIf="submitted">
+      Erreur : {{ errorMessage }}
+  </div> -->
+</form>

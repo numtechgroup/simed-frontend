@@ -13,7 +13,6 @@ import { AddUserComponent } from './add-user/add-user.component';
 export class UsersComponent {
   fetchedUser : any;
 
-
    constructor(public dialog: MatDialog,
                 private _userService: UserService) { }
 

@@ -1,4 +1,4 @@
-export interface User {
+export interface Doctor {
     _id: string;
     prenom: string;
     nom : string;
@@ -7,6 +7,8 @@ export interface User {
     telephone: string;
     email: string;
     password: string;
-    role: string;
+    specialite: string;
+    hopital: string;
+    token: string;
     createdAt: Date;
 }

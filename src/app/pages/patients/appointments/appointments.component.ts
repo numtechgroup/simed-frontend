@@ -1,13 +1,16 @@
-import { ChangeDetectorRef, Component, signal } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { Calendar, CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import listPlugin from '@fullcalendar/list';
-import { INITIAL_EVENTS, createEventId } from './event-utils';
+import { INITIAL_EVENTS } from './event-utils';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddDisponibilityComponent } from '../../doctors/disponibilities/add-disponibility/add-disponibility.component';
+import { AddAppointmentsComponent } from './add-appointments/add-appointments.component';
+import { PatientService } from 'src/app/services/patient.service';
+import * as moment from 'moment';
+import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
+
 
 
 @Component({
@@ -15,7 +18,7 @@ import { AddDisponibilityComponent } from '../../doctors/disponibilities/add-dis
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss']
 })
-export class AppointmentsComponent {
+export class AppointmentsComponent implements OnInit {
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
     plugins: [
@@ -28,16 +31,21 @@ export class AppointmentsComponent {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    initialView: 'timeGridWeek',
-    initialEvents: INITIAL_EVENTS,
+    initialView: 'dayGridMonth',
+    events:[],
+    eventColor:'#FF0000',
+    // initialEvents: INITIAL_EVENTS,
     weekends: true,
     editable: true,
-    selectable: true,
+    selectable: false,
     selectMirror: true,
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    eventsSet: this.handleEvents.bind(this),
+    // dayCellContent: this.handleDayCellContent.bind(this),
+    // eventContent: this.handleEventContent.bind(this),
+
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
@@ -46,11 +54,31 @@ export class AppointmentsComponent {
   });
   currentEvents = signal<EventApi[]>([]);
 
-  constructor(private changeDetector: ChangeDetectorRef, private doctorService: DoctorService, private dialog: MatDialog) {
+  constructor(private changeDetector: ChangeDetectorRef, private patientService: PatientService, private dialog: MatDialog) {
+  }
+  ngOnInit() {
+    this.fetchPatientsAppointments();
+  }
+  fetchPatientsAppointments(){
+    this.patientService.getAllAppointments().subscribe(
+      appointments =>{
+        console.log(appointments);
+        const events = appointments.map(appointment =>({
+          id: appointment._id,
+          date: appointment.date, // You can customize the event title
+          doctor: appointment.doctorId,
+          time: appointment.timeAppointment,
+        }));
+        console.log('appointments :',events);
+        this.calendarOptions.mutate(options => {
+          options.events = events;
+        });
+      });
   }
   handleCalendarToggle() {
     this.calendarVisible.update((bool) => !bool);
   }
+
 
   handleWeekendsToggle() {
     this.calendarOptions.mutate((options) => {
@@ -58,10 +86,17 @@ export class AppointmentsComponent {
     });
   }
 
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const dialogRef = this.dialog.open(AddDisponibilityComponent, {
-      data: { selectedDate: selectInfo.startStr }
+  openDialog(){
+    const dialogRef = this.dialog.open(AddAppointmentsComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any result from the dialog if needed
+      console.log('Dialog closed with result:', result);
     });
+  }
+
+  handleDateSelect(selectInfo: DateSelectArg) {
+    const dialogRef = this.dialog.open(AddAppointmentsComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       // Handle any result from the dialog if needed
@@ -69,24 +104,23 @@ export class AppointmentsComponent {
     });    // const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // clear date selection
-
-      // calendarApi.addEvent(
-      //   {
-      //   id: createEventId(),
-      //   start: selectInfo.startStr,
-      //   end: selectInfo.endStr,
-      // });
+    calendarApi.unselect();
     }
 
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-    }
+    const dialogRef = this.dialog.open(ViewAppointmentComponent,{
+      data: {id: clickInfo.event.id},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any result from the dialog if needed
+      console.log('Dialog closed with result:', result);
+    });
   }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents.set(events);
     this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
   }
+
 }

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'r
 import { environment } from 'src/environments/environment';
 import { UserToken } from '../models/user-token';
 import { Disponibility } from '../models/disponibility';
+import { Doctor } from '../models/doctor';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class DoctorService {
 
   private tokenSubject: BehaviorSubject<UserToken>;
   private token : Observable<UserToken>;
-  private _fetchedDispo : BehaviorSubject<Disponibility[] | null> = new BehaviorSubject<Disponibility[] | null>(null);
+
 
 
   constructor(private readonly http: HttpClient) {
@@ -53,6 +54,25 @@ export class DoctorService {
     )
    }
 
+   getAllDoctors(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get<any>(`${environment.apiUrl}/api/doctors`, httpOptions).
+    pipe(
+      map((data: any) => {
+        // console.log('les données sont ',data);
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
+   }
+
    deleteSingleEvent(id: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -68,6 +88,8 @@ export class DoctorService {
         console.log(error);
         return throwError('Something went wrong');
       })
-    );  }
+    );
+
+  }
 
 }
