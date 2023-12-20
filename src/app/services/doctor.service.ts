@@ -92,4 +92,23 @@ export class DoctorService {
 
   }
 
+
+  getStatisticsPatients(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get(`${environment.apiUrl}/api/patients/statistics`, httpOptions).
+    pipe(
+      map((data: any) => {
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    );
+  }
+
 }

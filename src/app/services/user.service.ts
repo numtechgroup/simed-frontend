@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
@@ -9,7 +9,7 @@ import { UserToken } from '../models/user-token';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnInit {
   private tokenSubject: BehaviorSubject<UserToken>;
   private token : Observable<UserToken>;
   private _fetchedUser : BehaviorSubject<User[] | null> = new BehaviorSubject<User[] | null>(null);
@@ -28,6 +28,10 @@ export class UserService {
       this.token = this.tokenSubject.asObservable();
   }
 
+  ngOnInit(){
+    setInterval(() => this.checkTokenValidity(), 900000);
+  }
+
   login(email: string, password: string) {
     return this._httpClient.post<any>(`${environment.apiUrl}/api/auth/login`, { email, password }).pipe(
         map(response => {
@@ -43,6 +47,12 @@ export class UserService {
           return response;
         })
     );
+  }
+
+  private checkTokenValidity() {
+    if (this.isTokenExpired()) {
+      this.logout();
+    }
   }
 
 //   setCookie(name: string, value: string, days: number) {
@@ -79,6 +89,40 @@ export class UserService {
       return 'null';
     }
   }
+
+  isTokenExpired(): boolean {
+    const token = this.getStoredToken();
+
+    if (!token) {
+      return true;
+    }
+
+    const tokenData = this.decodeToken(token);
+
+    if (!tokenData || !tokenData.exp) {
+      return true;
+    }
+
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    return tokenData.exp < currentTime;
+  }
+
+  private decodeToken(token: string): any {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      console.log(jsonPayload);
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('Erreur lors du décodage du token :', error);
+      return null;
+    }
+  }
+
 
   getStoredToken(): string | null {
     return localStorage.getItem('user-token');

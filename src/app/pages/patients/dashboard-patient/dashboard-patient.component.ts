@@ -8,6 +8,7 @@ import {
   chartExample1,
   chartExample2
 } from "../../../variables/charts";
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'app-dashboard-patient',
@@ -20,9 +21,13 @@ export class DashboardPatientComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
+  fetchedStats : any;
+
+  constructor(private patientService: PatientService) {}
 
   ngOnInit() {
 
+    this.fetchedStatsDoctors();
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
@@ -54,5 +59,19 @@ export class DashboardPatientComponent implements OnInit {
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;
     this.salesChart.update();
+  }
+  fetchedStatsDoctors(){
+    this.patientService.getStatisticsDoctors().subscribe({
+      next: (response) => {
+        if (response !== null) {
+          this.fetchedStats = response;
+        } else {
+          console.log('error :', response)
+        }
+      },
+      error: (errors) => {
+        console.log(errors);
+      },
+  })
   }
 }
