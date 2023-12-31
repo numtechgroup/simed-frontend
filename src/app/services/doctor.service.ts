@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'r
 import { environment } from 'src/environments/environment';
 import { UserToken } from '../models/user-token';
 import { Disponibility } from '../models/disponibility';
-import { Doctor } from '../models/doctor';
+import { Dossier } from '../models/dossier';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,22 @@ export class DoctorService {
       this.tokenSubject = new BehaviorSubject<UserToken>(JSON.parse(localStorage.getItem('user-token')));
       this.token = this.tokenSubject.asObservable();
    }
+
+   createDossier(data){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+      return this.http.post(`${environment.apiUrl}/api/doctor/createDossier`, data, httpOptions).pipe(
+        map((response) => {
+          console.log('reponse ',response);
+          return response;
+        }),
+      )
+   }
+
    createDisponibility(data){
     const httpOptions = {
       headers: new HttpHeaders({
@@ -73,6 +89,25 @@ export class DoctorService {
     )
    }
 
+   getAllPatients(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get<any>(`${environment.apiUrl}/api/patients`, httpOptions).
+    pipe(
+      map((data: any) => {
+        // console.log('les données sont ',data);
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
+   }
+
    deleteSingleEvent(id: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -109,6 +144,44 @@ export class DoctorService {
         return throwError('Something went wrong');
       })
     );
+  }
+
+  getAllDossiers(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get(`${environment.apiUrl}/api/doctor/dossiers/all`, httpOptions).
+    pipe(
+      map((data: any) => {
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    );
+  }
+
+  getDossiersById(id:any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.tokenSubject.value
+      })
+    };
+    return this.http.get<Dossier>(`${environment.apiUrl}/api/doctor/dossier/`+id, httpOptions).
+    pipe(
+      map((data: any) =>{
+        console.log('serv data', data);
+        return data;
+      }),
+      catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
   }
 
 }

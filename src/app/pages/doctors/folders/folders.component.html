@@ -1,1 +1,27 @@
-<p>folders works!</p>
+  <div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="col-auto float-right mt-4">
+          <div class="icon icon-shape bg-danger text-white rounded-circle shadow" style="cursor: pointer;" (click)="openDialog()">
+            <i class="fas fa-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row" >
+      <div class="col-xl-4 col-lg-6" *ngFor="let folder of folders">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src="../../../../assets/img/logo-chrsl.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Num Dossier : {{folder.identification.numeroDossier}}</h5>
+            <h6 class="card-text"></h6>
+            <button class="btn btn-info" (click)="viewDetails(folder._id)">Voir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -64,7 +64,8 @@
       <div class="form-group">
         <label for="password">Mot de Passe</label>
         <div class="input-group mb-4">
-          <input formControlName="password" type="password" class="form-control" placeholder="mot de passe">
+          <input formControlName="password" [type]="hide ? 'password' : 'text'" class="form-control" placeholder="mot de passe">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </div>
       </div>
     </div>
@@ -72,7 +73,8 @@
       <div class="form-group">
         <label for="password">Confirmation Mot de Passe</label>
         <div class="input-group mb-4">
-          <input formControlName="new_password" type="password" class="form-control" placeholder="repetez le mot de passe">
+          <input formControlName="new_password" [type]="hide ? 'password' : 'text'" class="form-control" placeholder="repetez le mot de passe">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </div>
       </div>
     </div>

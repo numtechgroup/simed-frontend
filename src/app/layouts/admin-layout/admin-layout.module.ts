@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MatIconModule } from '@angular/material/icon'
-
+import {MatSelectModule} from '@angular/material/select';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/admin/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
@@ -26,6 +26,9 @@ import { DeleteDisponibilityComponent } from 'src/app/pages/doctors/disponibilit
 import { AddAppointmentsComponent } from 'src/app/pages/patients/appointments/add-appointments/add-appointments.component';
 import { DeleteAppointmentComponent } from 'src/app/pages/patients/appointments/delete-appointment/delete-appointment.component';
 import { ViewAppointmentComponent } from 'src/app/pages/patients/appointments/view-appointment/view-appointment.component';
+import { AddFolderComponent } from 'src/app/pages/doctors/folders/add-folder/add-folder.component';
+import { ViewFolderComponent } from 'src/app/pages/doctors/folders/view-folder/view-folder.component';
+import { DeleteFolderComponent } from 'src/app/pages/doctors/folders/delete-folder/delete-folder.component';
 // import { ToastrModule } from 'ngx-toastr';
 // import {
 //   MatFormFieldModule,
@@ -43,7 +46,8 @@ import { ViewAppointmentComponent } from 'src/app/pages/patients/appointments/vi
     FullCalendarModule,
     MatInputModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   declarations: [
     DashboardComponent,
@@ -62,6 +66,9 @@ import { ViewAppointmentComponent } from 'src/app/pages/patients/appointments/vi
     AddAppointmentsComponent,
     DeleteAppointmentComponent,
     ViewAppointmentComponent,
+    AddFolderComponent,
+    ViewFolderComponent,
+    DeleteFolderComponent,
   ]
 })
 

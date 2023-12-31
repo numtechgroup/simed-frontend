@@ -26,7 +26,7 @@ export class AddAppointmentsComponent {
 
     formInit(){
       this.appointForm = this.formBuilder.group({
-        doctorId:['', Validators.required],
+        doctorId:[''],
         date: ['', Validators.required],
         timeAppointment: ['', Validators.required]
       });

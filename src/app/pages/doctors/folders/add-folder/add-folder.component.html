@@ -1,0 +1,492 @@
+<div style="max-height: 500px; overflow-y: auto;">
+  <form method="post" [formGroup]="addFolderForm" enctype="multipart/form-data">
+    <div>
+      <span class="text-center font-weight-bold">Informations</span>
+    </div>
+    <div formGroupName="identification">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="prenom">Patient</label>
+            <select formControlName="patient" class="form-control" id="exampleFormControlSelect1">
+                  <option *ngFor="let patient of patientsOptions" value="{{patient.id}}" >{{patient.nom}}</option>
+              </select>
+          </div>
+        </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="nom">Profession</label>
+          <input formControlName="profession" type="text" placeholder="profession" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="gender">Numero Dossier</label>
+          <input formControlName="numeroDossier" type="text" readonly class="form-control" id="exampleFormControlInput1" placeholder="D-2023-3472Y8">
+        </div>
+      </div>
+    </div>
+    </div>
+    <div>
+      <span class="text-center font-weight-bold">Aspects Cliniques</span>
+    </div>
+    <div formGroupName="aspectsCliniques">
+      <div class="row">
+        <div class="col-md-12">
+          <label for="gender">Motifs Consultation</label>
+          <textarea formControlName="motifConsultation" class="form-control" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+      <div formGroupName="antecedents">
+        <div formGroupName="ophtalmologiques">
+          <div>
+            <span class="text-center font-weight-bold">Antecedants Ophtalmologiques</span>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="glaucome">Chir. Glaucome</label>
+                <select formControlName="chirurgieGlaucome" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="datechirurgieGlaucome">Date chirurgie</label>
+                <input formControlName="datechirurgieGlaucome" type="date" placeholder="Date" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="cataracte">Chir. Cataracte</label>
+                <select formControlName="chirurgieCataracte" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="datechirurgieCataracte">Date chirurgie</label>
+                <input formControlName="datechirurgieCataracte" type="date" placeholder="Date" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="autres">Autres</label>
+                <input formControlName="autres" type="text" placeholder="Autres antecedents" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="generaux">
+          <div>
+            <span class="text-center font-weight-bold">Antecedants Généraux</span>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="hta">HTA</label>
+                <select formControlName="hta" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="diabete">Diabete</label>
+                <select formControlName="diabete" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="dysthyroidies">Dysthyroidie</label>
+                <select formControlName="dysthyroidies" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="familiaux">
+          <div>
+            <span class="text-center font-weight-bold">Antecedants Familiaux</span>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="maladiesGen">Mala. Genetiques</label>
+                <select formControlName="maladiesGenetiques" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="typeMaladieGenetique">Type</label>
+                <input formControlName="typeMaladieGenetique" type="text" placeholder="Type de Maladie Genetique" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="glaucomes">Glaucome</label>
+                  <select formControlName="glaucomes" class="form-control" id="exampleFormControlSelect1">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="membresFamilleAtteints">Membres Famille</label>
+                  <input formControlName="membresFamilleAtteints" type="text" placeholder="Membres de la famille atteints" class="form-control" />
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="c">Ametropie</label>
+                <select formControlName="ametropies" class="form-control" id="exampleFormControlSelect1">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="examensCliniques">
+      <div formGroupName="avlsc">
+        <div>
+          <span class="text-center font-weight-bold">Examen Clinique AVLSC</span>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="avlscDroit">Oeil Droit</label>
+              <input formControlName="oeilDroit" type="text" placeholder="AVLSC Droit" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="avlscGauche">Oeil Gauche</label>
+              <input formControlName="oeilGauche" type="text" placeholder="AVLSC Gauche" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="avlac">
+        <div>
+          <span class="text-center font-weight-bold">Examen Clinique AVLAC</span>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="avlacDroit">Oeil Droit</label>
+              <input formControlName="oeilDroit" type="text" placeholder="AVLAC Droit" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="avlacGauche">Oeil Gauche</label>
+              <input formControlName="oeilGauche" type="text" placeholder="AVLAC Gauche" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="avp">
+        <div>
+          <span class="text-center font-weight-bold">Examen Clinique AVP</span>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="avpDroit">Oeil Droit</label>
+              <input formControlName="eilDroit" type="text" placeholder="AVP Droit" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="avpGauche">Oeil Gauche</label>
+              <input formControlName="oeilGauche" type="text" placeholder="AVP Gauche" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="refraction">
+        <div>
+          <span class="text-center font-weight-bold">Examen Clinique Refraction</span>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="refractionDroit">Oeil Droit</label>
+              <input formControlName="oeilDroit" type="text" placeholder="Refraction Droit" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="refractionGauche">Oeil Gauche</label>
+              <input formControlName="oeilGauche" type="text" placeholder="Refraction Gauchee" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="skiascopie">
+        <div>
+          <span class="text-center font-weight-bold">Examen Clinique SKIASCOPIE</span>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="skiascopieDroit">Oeil Droit</label>
+              <input formControlName="oeilDroit" type="text" placeholder="Skiascopie Droit" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="skiascopieGauche">Oeil Gauche</label>
+              <input formControlName="oeilGauche" type="text" placeholder="Skiascopie Gauche" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="segmentAnterieur">Annexes</label>
+            <input formControlName="annexes" type="text" placeholder="Segment Anterieur" class="form-control" />
+          </div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="segmentAnterieur">Segment Anterieur</label>
+              <input formControlName="segmentAnterieur" type="text" placeholder="Segment Anterieur" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="tonusOculaire">Tonus Oculaire</label>
+              <input formControlName="tonusOculaire" type="text" placeholder="Tonus Oculaire" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="tonusOculaire">Fond d'Oeil</label>
+              <input formControlName="fondOeil" type="text" placeholder="Fond d'oeil" class="form-control" />
+            </div>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="hypotheseDiagnostic">Hypothese Diagnostic</label>
+          <textarea class="form-control" formControlName="hypotheseDiagnostic" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <label for="hypotheseDiagnostic">Conduite à tenir</label>
+          <textarea class="form-control" formControlName="conduiteATenir" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="text-center font-weight-bold">Examens Complementaires</span>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="pachymetrie">Pachymetrie</label>
+          <input formControlName="pachymetrie" type="file" (change)="uploadImage($event.target.files, 'pachymetrie')" #avatarFileInput placeholder="Pachymetrie" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="echographieB">Echographie B</label>
+          <input formControlName="echographieB" type="file" (change)="uploadImage($event.target.files,'echographieB')" #avatarFileInput placeholder="Echographie B" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="biometrie">Biometrie</label>
+          <input formControlName="biometrie" type="file" (change)="uploadImage($event.target.files,'biometrie')" #avatarFileInput placeholder="Fond de l'oeil" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="champVisuel">Champs Visuel</label>
+          <input formControlName="champVisuel" type="file" (change)="uploadImage($event.target.files,'champVisuel')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="retinographie">Retinographie</label>
+          <input formControlName="retinographie" type="file" (change)="uploadImage($event.target.files,'retinographie')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="oct">OCT</label>
+          <input formControlName="oct" type="file" (change)="uploadImage($event.target.files,'oct')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="text-center font-weight-bold">Imagerie Medicale</span>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="radiographie">Radiographie</label>
+          <input formControlName="radiographie" type="file" (change)="uploadImage($event.target.files,'radiographie')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="scannerOrbitaire">Scanner Orbitraire</label>
+          <input formControlName="scannerOrbitaire" type="file" (change)="uploadImage($event.target.files,'scannerOrbitaire')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="irm">IRM</label>
+          <input formControlName="irm" type="file" (change)="uploadImage($event.target.files,'irm')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="echographie">Echographie</label>
+          <input formControlName="echographie" type="file" (change)="uploadImage($event.target.files,'echographie')" #avatarFileInput class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="biologie">
+      <div>
+        <span class="text-center font-weight-bold">Biologie</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="gaj">GAJ</label>
+            <input formControlName="gaj" type="text" placeholder="Glycemie à jeune" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="hba1c">Hba1c</label>
+            <input formControlName="hba1c" type="text" placeholder="Hba1c" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="nfs">NFS</label>
+            <input formControlName="nfs" type="text" placeholder="NFS" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="tp">TP</label>
+            <input formControlName="tp" type="text" placeholder="TP" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="tck">TCK</label>
+            <input formControlName="tck" type="text" placeholder="TCK" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="creatinine">Creatinine</label>
+            <input formControlName="creatinine" type="text" placeholder="Creatinine" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="resultats">
+      <div>
+        <span class="text-center font-weight-bold">Resultats</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="diagnosticPositif">Diagnostic Positif</label>
+          <textarea class="form-control" formControlName="diagnosticPositif" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="traitement">Traitement</label>
+          <textarea class="form-control" formControlName="traitement" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="evolution">Evolution</label>
+          <textarea class="form-control" formControlName="evolution" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-info float-right" (click)="createFolder()">Enregistrer</button>
+        <button type="button" class="btn btn-danger float-right mr-2" mat-dialog-close>fermer</button>
+    </div>
+  </form>
+</div>

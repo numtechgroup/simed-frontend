@@ -13,6 +13,8 @@ export class AddUserComponent implements OnInit {
   genders: String[] = ['Masculin', 'Feminin'];
   addUserForm: FormGroup;
   error: string;
+  hide = true;
+
 
   ngOnInit() {
 
@@ -52,7 +54,7 @@ export class AddUserComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Quelque chose s\'est mal passé !',
+            text: err.errors.error.message,
             timer: 1000
           }),
           console.error(err)
