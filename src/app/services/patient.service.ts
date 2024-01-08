@@ -17,6 +17,21 @@ export class PatientService {
     this.token = this.tokenSubject.asObservable();
  }
 
+ createPatient(data) {
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.tokenSubject.value,
+    })
+  };
+  return this.http.post<any>(`${environment.apiUrl}/api/doctor/addPatient`, data, httpOptions).pipe(
+    map((response: any) => {
+      console.log(response);
+      return response;
+    })
+  );
+}
+
  createAppointment(data){
   const httpOptions = {
     headers: new HttpHeaders({

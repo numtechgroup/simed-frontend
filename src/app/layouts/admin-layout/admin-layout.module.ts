@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MatIconModule } from '@angular/material/icon'
+import { MatRadioModule } from '@angular/material/radio';
+
 import {MatSelectModule} from '@angular/material/select';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/admin/dashboard/dashboard.component';
@@ -29,6 +31,8 @@ import { ViewAppointmentComponent } from 'src/app/pages/patients/appointments/vi
 import { AddFolderComponent } from 'src/app/pages/doctors/folders/add-folder/add-folder.component';
 import { ViewFolderComponent } from 'src/app/pages/doctors/folders/view-folder/view-folder.component';
 import { DeleteFolderComponent } from 'src/app/pages/doctors/folders/delete-folder/delete-folder.component';
+import { AddPatientComponent } from 'src/app/pages/patients/add-patient/add-patient.component';
+import { DoctorService } from 'src/app/services/doctor.service';
 // import { ToastrModule } from 'ngx-toastr';
 // import {
 //   MatFormFieldModule,
@@ -47,7 +51,8 @@ import { DeleteFolderComponent } from 'src/app/pages/doctors/folders/delete-fold
     MatInputModule,
     MatDialogModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   declarations: [
     DashboardComponent,
@@ -69,7 +74,9 @@ import { DeleteFolderComponent } from 'src/app/pages/doctors/folders/delete-fold
     AddFolderComponent,
     ViewFolderComponent,
     DeleteFolderComponent,
-  ]
+    AddPatientComponent
+  ],
+  providers:[DoctorService]
 })
 
 export class AdminLayoutModule {}

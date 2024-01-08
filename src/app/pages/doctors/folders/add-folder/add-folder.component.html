@@ -9,23 +9,23 @@
         <div class="form-group">
           <label for="prenom">Patient</label>
             <select formControlName="patient" class="form-control" id="exampleFormControlSelect1">
-                  <option *ngFor="let patient of patientsOptions" value="{{patient.id}}" >{{patient.nom}}</option>
+                  <option *ngFor="let patient of patientsOptions" value="{{patient.id}}">{{patient.nom}}</option>
               </select>
           </div>
         </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="nom">Profession</label>
-          <input formControlName="profession" type="text" placeholder="profession" class="form-control" />
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="nom">Profession</label>
+            <input formControlName="profession" type="text" placeholder="profession" class="form-control" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="gender">Numero Dossier</label>
+            <input formControlName="numeroDossier" type="text" readonly class="form-control" id="exampleFormControlInput1" placeholder="D-2023-3472Y8">
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="gender">Numero Dossier</label>
-          <input formControlName="numeroDossier" type="text" readonly class="form-control" id="exampleFormControlInput1" placeholder="D-2023-3472Y8">
-        </div>
-      </div>
-    </div>
     </div>
     <div>
       <span class="text-center font-weight-bold">Aspects Cliniques</span>
@@ -221,7 +221,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="avpDroit">Oeil Droit</label>
-              <input formControlName="eilDroit" type="text" placeholder="AVP Droit" class="form-control" />
+              <input formControlName="oeilDroit" type="text" placeholder="AVP Droit" class="form-control" />
             </div>
           </div>
           <div class="col-md-6">

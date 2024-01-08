@@ -1,11 +1,7 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <div class="col-auto float-right mt-4">
-        <div class="icon icon-shape bg-danger text-white rounded-circle shadow" style="cursor: pointer;" (click)="openDialog()">
-          <i class="fas fa-plus"></i>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
@@ -16,46 +12,28 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center border-0">
-          <h3 class="mb-0">Patients</h3>
+          <h3 class="mb-0">Ordonnances</h3>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Prenom</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Telephone</th>
-                <th scope="col">Email</th>
-                <th scope="col">Groupe Sanguin</th>
+                <th scope="col">Patient</th>
+                <th scope="col">Date Creation</th>
                 <!-- <th scope="col">Action</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let patient of fetchedPatients">
+              <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">{{patient.prenom}}</span>
+                      <span class="mb-0 text-sm">patient</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  {{patient.nom}}
-                </td>
-                <td>
-                  {{patient.genre}}
-                </td>
-                <td>{{patient.adresse}}</td>
-                <td>
-                  {{patient.telephone}}
-                </td>
-                <td>
-                  {{patient.email}}
-                </td>
-                <td>
-                  {{patient.groupeSanguin}}
+                  date creation
                 </td>
                 <!-- <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

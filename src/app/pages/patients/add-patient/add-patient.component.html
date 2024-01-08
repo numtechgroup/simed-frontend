@@ -1,0 +1,58 @@
+<form method="post" [formGroup]="addUserForm">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="prenom">Prenom</label>
+        <input formControlName="prenom" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Prenom">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input formControlName="nom" type="text" placeholder="Nom" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="gender">Genre</label>
+        <select formControlName="genre" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let gender of genders" value="{{gender}}" >{{gender}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input formControlName="adresse" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Adresse">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nom">Telephone</label>
+        <input formControlName="telephone" type="number" placeholder="Telephone" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="gender">Groupe Sanguin</label>
+        <select formControlName="groupeSanguin" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let groupe of groupes" value="{{groupe}}" >{{groupe}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="nom">Email</label>
+        <input formControlName="email" type="text" placeholder="Email" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div>
+      <button type="button" class="btn btn-info float-right" (click)="addPatient()">Save</button>
+      <button type="button" class="btn btn-danger float-right mr-2" mat-dialog-close>Close</button>
+  </div>
+</form>

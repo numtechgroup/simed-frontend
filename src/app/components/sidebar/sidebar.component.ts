@@ -24,6 +24,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/home/patients', title: 'Patients',  icon: 'ni-single-02 text-red', class: '', type:'docteur' },
     { path: '/home/disponibilities', title: 'Mes RVs',  icon: 'ni-calendar-grid-58 text-blue', class: '', type:'docteur' },
     { path: '/home/folders', title: 'Dossiers Medicaux',  icon: 'ni-books text-blue', class: '', type:'docteur' },
+    { path: '/home/ordonnances', title: 'Ordonnances',  icon: 'ni-folder-17 text-blue', class: '', type:'docteur' },
     // { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '', type:'admin' },
     // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '', type:'admin' },
     // { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '', type:'admin' },

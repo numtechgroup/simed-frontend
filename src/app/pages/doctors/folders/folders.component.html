@@ -11,15 +11,14 @@
   </div>
   <!-- Page content -->
   <div class="container-fluid mt--7">
-    <!-- Table -->
     <div class="row" >
       <div class="col-xl-4 col-lg-6" *ngFor="let folder of folders">
         <div class="card" style="width: 15rem;">
           <img class="card-img-top" src="../../../../assets/img/logo-chrsl.png" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">Num Dossier : {{folder.identification.numeroDossier}}</h5>
+            <h5 class="card-title">Numero Dossier : {{folder.identification.numeroDossier}}</h5>
             <h6 class="card-text"></h6>
-            <button class="btn btn-info" (click)="viewDetails(folder._id)">Voir</button>
+            <a class="btn btn-info" (click)="viewFolderDetails(folder._id)">Voir</a>
           </div>
         </div>
       </div>

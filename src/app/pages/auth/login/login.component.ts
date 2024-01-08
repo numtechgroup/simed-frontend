@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     private _router:Router,
     private _formBuilder: FormBuilder,
     private userService: UserService,
-    private route: ActivatedRoute,
     private tokenStorage: TokenStorageService,
   ) {
 

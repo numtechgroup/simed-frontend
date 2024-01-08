@@ -4,6 +4,7 @@ import { AddFolderComponent } from './add-folder/add-folder.component';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { ViewFolderComponent } from './view-folder/view-folder.component';
 import { EventClickArg } from '@fullcalendar/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-folders',
@@ -15,7 +16,7 @@ export class FoldersComponent implements OnInit {
   folders: any;
   patientsNames:any;
 
-  constructor(private dialog: MatDialog, private doctorService: DoctorService){
+  constructor(private dialog: MatDialog, private router:Router, private doctorService: DoctorService){
 
   }
   ngOnInit() {
@@ -46,6 +47,10 @@ export class FoldersComponent implements OnInit {
         }
       });
     }
+    }
+
+    viewFolderDetails(folderId: string) {
+      this.router.navigate(['/home/dossier', folderId]);
     }
 
   }

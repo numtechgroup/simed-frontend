@@ -28,7 +28,7 @@ export class DoctorService {
         'Authorization': 'Bearer ' + this.tokenSubject.value,
       })
     };
-      return this.http.post(`${environment.apiUrl}/api/doctor/createDossier`, data, httpOptions).pipe(
+      return this.http.post(`${environment.apiUrl}/api/doctor/createDossier`, data).pipe(
         map((response) => {
           console.log('reponse ',response);
           return response;
@@ -108,6 +108,25 @@ export class DoctorService {
     )
    }
 
+   getPatientById(id:any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get<any>(`${environment.apiUrl}/api/patient/`+id, httpOptions).
+    pipe(
+      map((data: any) => {
+        console.log('les données sont ',data);
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
+   }
+
    deleteSingleEvent(id: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -172,6 +191,26 @@ export class DoctorService {
       })
     };
     return this.http.get<Dossier>(`${environment.apiUrl}/api/doctor/dossier/`+id, httpOptions).
+    pipe(
+      map((data: any) =>{
+        console.log('serv data', data);
+        return data;
+      }),
+      catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
+  }
+
+  updateDossierById(id:any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.tokenSubject.value
+      })
+    };
+    return this.http.put<Dossier>(`${environment.apiUrl}/api/doctor/dossier/update/`+id, httpOptions).
     pipe(
       map((data: any) =>{
         console.log('serv data', data);

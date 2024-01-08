@@ -1,294 +1,292 @@
-<div style="max-height: 500px; overflow-y: auto;">
-  <form method="post">
-    <div>
-      <span class="text-center font-weight-bold">Informations</span>
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Add your custom content here -->
     </div>
-    <div formGroupName="identification">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="prenom">Patient</label>
-          <input value="{{folder.identification.patient}}" readonly type="text" class="form-control" />
-          </div>
-        </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="nom">Profession</label>
-          <input value="{{folder.identification.profession}}" readonly type="text" class="form-control" />
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="gender">Numero Dossier</label>
-          <input value="{{folder.identification.numeroDossier}}" readonly type="text" class="form-control" />
-        </div>
-      </div>
-    </div>
-    </div>
-    <div>
-      <span class="text-center font-weight-bold">Aspects Cliniques</span>
-    </div>
-    <div formGroupName="aspectsCliniques">
-      <div class="row">
-        <div class="col-md-12">
-          <label for="gender">Motifs Consultation</label>
-          <textarea value="{{folder.aspectsCliniques.motifsConsultation}}"  class="form-control" id="" cols="10" rows="4"></textarea>
-        </div>
-      </div>
-      <div formGroupName="antecedents">
-        <div formGroupName="ophtalmologiques">
-          <div>
-            <span class="text-center font-weight-bold">Antecedants Ophtalmologiques</span>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="cataracte">Chir. Cataracte</label>
-                <input value="{{folder.aspectsCliniques.antecedents.ophtalmologiques.chirurgieCataracte}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="datechirurgie">Date chirurgie</label>
-                <input value="{{folder.aspectsCliniques.antecedents.ophtalmologiques.dateCataracte}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="glaucome">Chir. Glaucome</label>
-                <input value="{{folder.aspectsCliniques.antecedents.ophtalmologiques.chirurgieGlaucome}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="autres">Autres</label>
-                <input value="{{folder.aspectsCliniques.antecedents.ophtalmologiques.autres}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
-          </div>
-        </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Add your dossier patient information content here -->
+      <h1>Informations Dossier Patient</h1>
 
-        <div formGroupName="generaux">
-          <div>
-            <span class="text-center font-weight-bold">Antecedants Généraux</span>
-          </div>
+      <section class="patient-info">
+        <h2>Patient Details</h2>
+        <form action="">
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="hta">HTA</label>
-                <input value="{{folder.aspectsCliniques.antecedents.generaux.hta}}" readonly type="text" class="form-control" />
+                <label for="prenom">Patient</label>
+                <input  type="text" value="{{patientName}}" readonly class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="nom">Profession</label>
+                  <input  type="text" value="{{fetchedDossier.results.identification.profession}}" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="gender">Numero Dossier</label>
+                  <input type="text" value="{{fetchedDossier.results.identification.numeroDossier}}" readonly class="form-control" id="exampleFormControlInput1">
+                </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="diabete">Diabete</label>
-                <input value="{{folder.aspectsCliniques.antecedents.generaux.diabete}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="dysthyroidies">Dysthyroidie</label>
-                <input value="{{folder.aspectsCliniques.antecedents.generaux.dysthyroidies}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
+        </form>
+      </section>
+      <section class="medical-history">
+        <h2>Aspects Cliniques</h2>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="motifs">Motifs Consultation</label>
+            <textarea value="{{fetchedDossier.results.aspectsCliniques.motifConsultation}}" class="form-control" id="" cols="10" rows="4"></textarea>
           </div>
         </div>
-
-        <div formGroupName="familiaux">
-          <div>
-            <span class="text-center font-weight-bold">Antecedants Familiaux</span>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="maladiesGen">Mala. Genetiques</label>
-                <input value="{{folder.aspectCliniques.antecedents.familiaux.maladiesGenetiques}}" readonly type="text" class="form-control" />
-
-              </div>
+            <div>
+              <span class="text-center font-weight-bold">Antecedants Ophtalmologiques</span>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="typeMaladieGenetique">Type</label>
-                <input value="{{folder.aspectsCliniques.antecedents.familiaux.typeMaladieGenetique}}" readonly type="text" class="form-control" />
-              </div>
-            </div>
-          </div>
-          <div class="row">
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="glaucomes">Glaucome</label>
-                  <input value="{{folder.aspectsCliniques.antecedents.familiaux.glaucomes}}" readonly type="text" class="form-control" />
+                  <label for="glaucome">Chir. Glaucome</label>
+                  <input value="{{fetchedDossier.results.aspectsCliniques.antecedents.ophtalmologiques.chirurgieGlaucome}}" readonly class="form-control" id="exampleFormControlSelect1" />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="membresFamilleAtteints">Membres Famille</label>
-                  <input value="{{folder.aspectsCliniques.antecedents.familiaux.membresFamilleAtteints}}" readonly type="text" class="form-control" />
+                  <label for="datechirurgieGlaucome">Date chirurgie</label>
+                  <input value="{{fetchedDossier.results.aspectsCliniques.antecedents.ophtalmologiques.dateGlaucome}}" readonly type="text" class="form-control" />
                 </div>
               </div>
-          </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="cataracte">Chir. Cataracte</label>
+                  <input type="text" readonly value="{{fetchedDossier.results.aspectsCliniques.antecedents.ophtalmologiques.chirurgieCataracte}}" class="form-control" id="exampleFormControlSelect1" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="datechirurgieCataracte">Date chirurgie</label>
+                  <input value="{{fetchedDossier.results.aspectsCliniques.antecedents.ophtalmologiques.dateCataracte}}" type="text" readonly class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="autres">Autres</label>
+                  <input value="{{fetchedDossier.results.aspectsCliniques.antecedents.ophtalmologiques.autres}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-center font-weight-bold">Antecedants Généraux</span>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="hta">HTA</label>
+                  <input type="text" value="{{fetchedDossier.results.aspectsCliniques.antecedents.generaux.hta}}" readonly class="form-control" id="exampleFormControlSelect1" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="diabete">Diabete</label>
+                  <input type="text" value="{{fetchedDossier.results.aspectsCliniques.antecedents.generaux.diabete}}" class="form-control" readonly id="exampleFormControlSelect1" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="dysthyroidies">Dysthyroidie</label>
+                  <input type="text" value="{{fetchedDossier.results.aspectsCliniques.antecedents.generaux.dysthyroidies}}" class="form-control" readonly id="exampleFormControlSelect1" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-center font-weight-bold">Antecedants Familiaux</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="maladiesGen">Mala. Genetiques</label>
+                  <input type="text" value="{{fetchedDossier.results.aspectsCliniques.antecedents.familiaux.maladiesGenetiques}}" readonly class="form-control" id="exampleFormControlSelect1"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="typeMaladieGenetique">Type</label>
+                  <input value="{{fetchedDossier.results.aspectsCliniques.antecedents.familiaux.typeMaladieGenetique}}" type="text" readonly class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="glaucomes">Glaucome</label>
+                    <input type="text" value="{{fetchedDossier.results.aspectsCliniques.antecedents.familiaux.glaucomes}}" readonly class="form-control" id="exampleFormControlSelect1"/>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="membresFamilleAtteints">Membres Famille</label>
+                    <input value="{{fetchedDossier.results.aspectsCliniques.antecedents.familiaux.membresFamilleAtteints}}" readonly type="text" class="form-control" />
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="c">Ametropie</label>
+                  <input type="text" value="{{fetchedDossier.results.aspectsCliniques.antecedents.familiaux.ametropies}}" class="form-control" id="exampleFormControlSelect1" />
+                </div>
+              </div>
+            </div>
+      </section>
+
+      <section class="appointments">
+            <div>
+              <span class="text-center font-weight-bold">Examen Clinique AVLSC</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="avlscDroit">Oeil Droit</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.avlsc.oeilDroit}}" type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="avlscGauche">Oeil Gauche</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.avlsc.oeilGauche}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-center font-weight-bold">Examen Clinique AVLAC</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="avlacDroit">Oeil Droit</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.avlac.oeilDroit}}" type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="avlacGauche">Oeil Gauche</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.avlac.oeilGauche}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-center font-weight-bold">Examen Clinique AVP</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="avpDroit">Oeil Droit</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.avp.oeilDroit}}" type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="avpGauche">Oeil Gauche</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.avp.oeilGauche}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-center font-weight-bold">Examen Clinique Refraction</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="refractionDroit">Oeil Droit</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.refraction.oeilDroit}}" type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="refractionGauche">Oeil Gauche</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.refraction.oeilGauche}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-center font-weight-bold">Examen Clinique SKIASCOPIE</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="skiascopieDroit">Oeil Droit</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.skiascopie.oeilDroit}}" type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="skiascopieGauche">Oeil Gauche</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.skiascopie.oeilGauche}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="c">Ametropie</label>
-                <input value="{{folder.aspectsCliniques.antecedents.familiaux.ametropies}}" readonly type="text" class="form-control" />
-
+                <label for="segmentAnterieur">Annexes</label>
+                <input value="{{fetchedDossier.results.examensCliniques.annexes}}" type="text" class="form-control" />
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="segmentAnterieur">Segment Anterieur</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.segmentAnterieur}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="tonusOculaire">Tonus Oculaire</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.tonusOculaire}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="tonusOculaire">Fond d'Oeil</label>
+                  <input value="{{fetchedDossier.results.examensCliniques.fondOeil}}" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="hypotheseDiagnostic">Hypothese Diagnostic</label>
+              <textarea class="form-control" value="{{fetchedDossier.results.examensCliniques.hypotheseDiagnostic}}" id="" cols="10" rows="4"></textarea>
+            </div>
+          </div>
 
-    <div formGroupName="examensCliniques">
-      <div formGroupName="avlsc">
-        <div>
-          <span class="text-center font-weight-bold">Examen Clinique AVLSC</span>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="avlscGauche">Oeil Gauche</label>
-              <input value="{{folder.examensCliniques.avlsc.oeilGauche}}" readonly type="text" class="form-control" />
+          <div class="row">
+            <div class="col-md-12">
+              <label for="hypotheseDiagnostic">Conduite à tenir</label>
+              <textarea class="form-control" value="{{fetchedDossier.results.examensCliniques.conduiteATenir}}" id="" cols="10" rows="4"></textarea>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="avlscDroit">Oeil Droit</label>
-              <input value="{{folder.examensCliniques.avlsc.oeilDroit}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div formGroupName="avlac">
-        <div>
-          <span class="text-center font-weight-bold">Examen Clinique AVLAC</span>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="avlacGauche">Oeil Gauche</label>
-              <input value="{{folder.examensCliniques.avlac.oeilGauche}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="avlacDroit">Oeil Droit</label>
-              <input value="{{folder.examensCliniques.avlac.oeilDroit}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div formGroupName="avp">
-        <div>
-          <span class="text-center font-weight-bold">Examen Clinique AVP</span>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="avpGauche">Oeil Gauche</label>
-              <input value="{{folder.examensCliniques.avp.oeilGauche}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="avpDroit">Oeil Droit</label>
-              <input value="{{folder.examensCliniques.avlac.oeilDroit}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div formGroupName="refraction">
-        <div>
-          <span class="text-center font-weight-bold">Examen Clinique Refraction</span>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="refractionGauche">Oeil Gauche</label>
-              <input value="{{folder.examensCliniques.refraction.oeilGauche}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="refractionDroit">Oeil Droit</label>
-              <input value="{{folder.examensCliniques.refraction.oeilDroit}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div formGroupName="skiascopie">
-        <div>
-          <span class="text-center font-weight-bold">Examen Clinique SKIASCOPIE</span>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="skiascopieGauche">Oeil Gauche</label>
-              <input value="{{folder.examensCliniques.skiascopie.oeilGauche}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="skiascopieDroit">Oeil Droit</label>
-              <input value="{{folder.examensCliniques.skiascopie.oeilDroit}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div formGroupName="annexes">
-        <div>
-          <span class="text-center font-weight-bold">Annexes</span>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="segmentAnterieur">Segment Anterieur</label>
-              <input value="{{folder.examensCliniques.annexes.segmentAnterieur}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="tonusOculaire">Tonus Oculaire</label>
-              <input value="{{folder.examensCliniques.annexes.tonusOculaire}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="fondOeil">Fond d'Oeil</label>
-              <input value="{{folder.examensCliniques.annexes.fondOeil}}" readonly type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label for="hypotheseDiagnostic">Hypothese Diagnostic</label>
-          <textarea class="form-control" value="{{folder.examensCliniques.hypotheseDiagnostic}}" readonly id="" cols="10" rows="4"></textarea>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <label for="conduiteATenir">Conduite à tenir</label>
-          <textarea class="form-control" value="{{folder.examensCliniques.conduiteATenir}}" id="" readonly cols="10" rows="4"></textarea>
-        </div>
-      </div>
-      <div formGroupName="examensComplementaires">
         <div>
           <span class="text-center font-weight-bold">Examens Complementaires</span>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <div class="form-group">
               <label for="pachymetrie">Pachymetrie</label>
-              <input value="{{folder.examensCliniques.examensComplementaires.pachymetrie}}" type="file" #avatarFileInput placeholder="Pachymetrie" class="form-control" />
+              <input value="{{fetchedDossier.results.examensCliniques.pachymetrie}}" type="file" (change)="uploadImage($event.target.files, 'pachymetrie')" #avatarFileInput placeholder="Pachymetrie" class="form-control" />
             </div>
           </div>
         </div>
@@ -296,7 +294,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="echographieB">Echographie B</label>
-              <input value="{{folder.examensCliniques.examensComplementaires.echographieB}}" type="file" #avatarFileInput placeholder="Echographie B" class="form-control" />
+              <input value="{{fetchedDossier.results.examensCliniques.avlsc.echograph}}ieB" type="file" (change)="uploadImage($event.target.files,'echographieB')" #avatarFileInput placeholder="Echographie B" class="form-control" />
             </div>
           </div>
         </div>
@@ -304,8 +302,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="biometrie">Biometrie</label>
-              <img [src]="generateImageUrl(folder.examensCliniques.examensComplementaires.biometrie)" alt="Biometrie Image" class="img-fluid" />
-              <input value="{{folder.examensCliniques.examensComplementaires.biometrie}}" type="file" #avatarFileInput placeholder="Fond de l'oeil" class="form-control" />
+              <input value="{{fetchedDossier.results.examensCliniques.avlsc.biometrie}}" type="file" (change)="uploadImage($event.target.files,'biometrie')" #avatarFileInput placeholder="Fond de l'oeil" class="form-control" />
             </div>
           </div>
         </div>
@@ -313,80 +310,66 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="champVisuel">Champs Visuel</label>
-              <input value="{{folder.examensCliniques.examensComplementaires.champVisuel}}" type="file" #avatarFileInput class="form-control" />
+              <input value="{{fetchedDossier.results.examensCliniques.avlsc.champVisu}}el" type="file" (change)="uploadImage($event.target.files,'champVisuel')" #avatarFileInput class="form-control" />
             </div>
           </div>
+        </div>         -->
+        <div>
+          <span class="text-center font-weight-bold">Biologie</span>
         </div>
-
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="retinographie">Retinographie</label>
-              <input value="{{folder.examensCliniques.examensComplementaires.retinographie}}" type="file" #avatarFileInput class="form-control" />
+              <label for="gaj">GAJ</label>
+              <input value="{{fetchedDossier.results.Biologie.GAJ}}" type="text" class="form-control" />
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="oct">OCT</label>
-              <input value="{{folder.examensCliniques.examensComplementaires.oct}}" type="file"  #avatarFileInput class="form-control" />
+              <label for="hba1c">Hba1c</label>
+              <input value="{{fetchedDossier.results.Biologie.Hba1c}}" type="text" class="form-control" />
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div formGroupName="horsServiceOphtalmo">
-      <div>
-        <span class="text-center font-weight-bold">Examens Hors Service Ophtalmo</span>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="scannerOrbitaire">Scanner Orbitraire</label>
-            <input value="{{folder.horsServiceOphtalmo.scannerOrbitaire}}" type="file"  #avatarFileInput class="form-control" />
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="nfs">NFS</label>
+              <input value="{{fetchedDossier.results.Biologie.NFS}}" type="text" class="form-control" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="irm">IRM</label>
-            <input value="{{folder.horsServiceOphtalmo.irm}}" type="file" #avatarFileInput class="form-control" />
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="tp">TP</label>
+              <input value="{{fetchedDossier.results.Biologie.TCK}}" type="text" class="form-control" />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div formGroupName="resultats">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="tck">TCK</label>
+              <input value="{{fetchedDossier.results.Biologie.TP}}" type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="creatinine">Creatinine</label>
+              <input value="{{fetchedDossier.results.Biologie.creatinine}}" type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </section>
       <div>
-        <span class="text-center font-weight-bold">Resultats</span>
+        <button type="button" class="btn btn-info float-right" (click)="updateFolder(fetchedDossier.results._id)">Mettre à jour</button>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label for="diagnosticPositif">Diagnostic Positif</label>
-          <textarea class="form-control" value="{{folder.resultats.diagnosticPositif}}" readonly id="" cols="10" rows="4"></textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label for="traitement">Traitement</label>
-          <textarea class="form-control" value="{{folder.resultats.traitement}}" readonly id="" cols="10" rows="4"></textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label for="evolution">Evolution</label>
-          <textarea class="form-control" value="{{folder.resultats.evolution}}" readonly id="" cols="10" rows="4"></textarea>
-        </div>
-      </div>
-    </div>
 
-    <div>
-        <button type="button" class="btn btn-info float-right">Enregistrer</button>
-        <button type="button" class="btn btn-danger float-right mr-2" mat-dialog-close>fermer</button>
     </div>
-  </form>
+  </div>
 </div>
