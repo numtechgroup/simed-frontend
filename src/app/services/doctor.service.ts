@@ -36,6 +36,21 @@ export class DoctorService {
       )
    }
 
+   createOrdonnance(data){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+      return this.http.post(`${environment.apiUrl}/api/doctor/createOrdonnance`, data).pipe(
+        map((response) => {
+          console.log('reponse ',response);
+          return response;
+        }),
+      )
+   }
+
    createDisponibility(data){
     const httpOptions = {
       headers: new HttpHeaders({
@@ -107,6 +122,45 @@ export class DoctorService {
       })
     )
    }
+
+   getAllOrdonnances(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get<any>(`${environment.apiUrl}/api/doctor/ordonnances`, httpOptions).
+    pipe(
+      map((data: any) => {
+        console.log('les données sont ',data);
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
+   }
+
+   getOrdonnanceById(id:any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.get<any>(`${environment.apiUrl}/api/doctor/ordonnance/`+id, httpOptions).
+    pipe(
+      map((data: any) => {
+        console.log('Ordonnance',data);
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    )
+   }
+
 
    getPatientById(id:any){
     const httpOptions = {

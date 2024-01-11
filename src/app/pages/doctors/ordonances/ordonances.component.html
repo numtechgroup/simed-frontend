@@ -19,33 +19,37 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Patient</th>
+                <th scope="col">Ordonnance</th>
                 <th scope="col">Date Creation</th>
-                <!-- <th scope="col">Action</th> -->
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let ordonnance of ordonnances">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">patient</span>
+                      <span class="mb-0 text-sm">{{ordonnance.patient}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  date creation
+                  {{ordonnance.nomOrdonnance}}
                 </td>
-                <!-- <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
+                <td>
+                  {{ordonnance.date}}
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-icon-only text-dark text-light">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <!-- <div ngbDropdown placement="bottom-right">
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Modifier</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Supprimer</a>
+                      <button class="dropdown-item">Telecharger</button>
+                      <button class="dropdown-item">Supprimer</button>
                     </div>
-                  </div>
-                </td> -->
+                  </div> -->
+                </td>
               </tr>
             </tbody>
           </table>

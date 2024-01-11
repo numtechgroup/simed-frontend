@@ -16,6 +16,9 @@ import { ComponentsModule } from './components/components.module';
 import { AuthInterceptorInterceptor } from './_helpers/auth-interceptor.interceptor';
 import { DoctorService } from './services/doctor.service';
 import { OrdonancesComponent } from './pages/doctors/ordonances/ordonances.component';
+import { AddOrdonnanceComponent } from './pages/doctor/ordonances/add-ordonnance/add-ordonnance.component';
+import { ViewOrdonnanceComponent } from './pages/doctors/ordonances/view-ordonnance/view-ordonnance.component';
+import { DeleteOrdonnanceComponent } from './pages/doctors/ordonances/delete-ordonnance/delete-ordonnance.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { OrdonancesComponent } from './pages/doctors/ordonances/ordonances.compo
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    OrdonancesComponent
+    OrdonancesComponent,
+    AddOrdonnanceComponent,
+    ViewOrdonnanceComponent,
+    DeleteOrdonnanceComponent
   ],
   providers: [
     {
