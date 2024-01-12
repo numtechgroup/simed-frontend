@@ -50,8 +50,21 @@ export class OrdonancesComponent implements OnInit  {
   }
 
   openDeleteDialog(id:any){
-    this.dialog.open(DeleteOrdonnanceComponent, {
-      data: id
-    })
+   const dialogRef = this.dialog.open(DeleteOrdonnanceComponent, {
+      data: {id:id}
+    });
+
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result == 'confirm'){
+        this.deleteOrdonnance(id);
+      }
+    });
+  }
+
+  deleteOrdonnance(id:any){
+    this.doctorService.deleteOrdonnance(id).pipe().subscribe(data =>{
+      console.log(data);
+    });
+    window.location.reload();
   }
 }
