@@ -1,7 +1,11 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-
+      <div class="col-auto float-right mt-4">
+        <div class="icon icon-shape bg-danger text-white rounded-circle shadow" style="cursor: pointer;" (click)="openDialog()">
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -18,7 +22,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Patient</th>
+                <!-- <th scope="col">Patient</th> -->
                 <th scope="col">Ordonnance</th>
                 <th scope="col">Date Creation</th>
                 <th scope="col">Action</th>
@@ -26,13 +30,13 @@
             </thead>
             <tbody>
               <tr *ngFor="let ordonnance of ordonnances">
-                <th scope="row">
+                <!-- <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
                       <span class="mb-0 text-sm">{{ordonnance.patient}}</span>
                     </div>
                   </div>
-                </th>
+                </th> -->
                 <td>
                   {{ordonnance.nomOrdonnance}}
                 </td>
@@ -40,8 +44,11 @@
                   {{ordonnance.date}}
                 </td>
                 <td>
-                  <button class="btn btn-sm btn-icon-only text-dark text-light">
-                    <i class="fas fa-download"></i>
+                  <button class="btn btn-sm btn-icon-only text-light" (click)="download(ordonnance._id)">
+                    <i class="fas fa-download text-dark"></i>
+                  </button>
+                  <button class="btn btn-sm btn-icon-only text-dark text-light" (click)="openDeleteDialog(ordonnance._id)">
+                    <i class="fas fa-trash text-red"></i>
                   </button>
                   <!-- <div ngbDropdown placement="bottom-right">
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">

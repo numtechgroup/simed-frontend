@@ -1,1 +1,34 @@
-<p>add-ordonnance works!</p>
+<div style="max-height: 500px; overflow-y: auto;">
+  <form method="post" [formGroup]="ordonnanceForm" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="prenom">Patient</label>
+            <select formControlName="patient" class="form-control" id="exampleFormControlSelect1">
+              <option *ngFor="let patient of patientsOptions" value="{{patient.id}}">{{patient.nom}}</option>
+            </select>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+      <label for="ordonnance">Nom Ordonnance</label>
+        <input type="text" class="form-control" formControlName="nomOrdonnance">
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="details">Details</label>
+          <textarea class="form-control" formControlName="details" id="" cols="10" rows="4"></textarea>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-info float-right" (click)="createOrdonnance()">Enregistrer</button>
+      <button type="button" class="btn btn-danger float-right mr-2" mat-dialog-close>fermer</button>
+  </div>
+  </form>
+</div>

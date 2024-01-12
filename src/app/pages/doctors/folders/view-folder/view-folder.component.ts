@@ -22,12 +22,9 @@ export class ViewFolderComponent implements OnInit {
     private route: ActivatedRoute){
       this.route.params.subscribe(params => {
         const folderIdFromRoute = params['id'];
-        // Use the appropriate folder ID
         this.folderId = folderIdFromRoute;
-
         console.log(this.folderId);
       });
-
   }
   ngOnInit() {
     this.fetchedDossiersById(this.folderId);
@@ -41,7 +38,6 @@ export class ViewFolderComponent implements OnInit {
         const patientId = this.fetchedDossier.results.identification.patient;
         this.doctorService.getPatientById(patientId).subscribe((patient) => {
           this.patientName = patient.prenom + ' ' + patient.nom;
-          console.log('Patient Name:', this.patientName);
         });
       },
       error: (err) => {

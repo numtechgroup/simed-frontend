@@ -43,13 +43,29 @@ export class DoctorService {
         'Authorization': 'Bearer ' + this.tokenSubject.value,
       })
     };
-      return this.http.post(`${environment.apiUrl}/api/doctor/createOrdonnance`, data).pipe(
+      return this.http.post(`${environment.apiUrl}/api/doctor/createOrdonnance`, data, httpOptions).pipe(
         map((response) => {
           console.log('reponse ',response);
           return response;
         }),
       )
    }
+
+    downloadOrdonnance(id:any){
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.tokenSubject.value,
+        }),
+        responseType: 'blob' as 'json', // Set responseType to 'blob'
+      };
+        return this.http.get(`${environment.apiUrl}/api/doctor/ordonnance/download/`+id, httpOptions).pipe(
+          map((response) => {
+            console.log('reponse ',response);
+            return response;
+          }),
+        )
+    }
 
    createDisponibility(data){
     const httpOptions = {
@@ -133,7 +149,6 @@ export class DoctorService {
     return this.http.get<any>(`${environment.apiUrl}/api/doctor/ordonnances`, httpOptions).
     pipe(
       map((data: any) => {
-        console.log('les données sont ',data);
         return data;
       }), catchError(error => {
         console.log(error);
@@ -189,6 +204,25 @@ export class DoctorService {
       })
     };
     return this.http.delete(`${environment.apiUrl}/api/doctor/disponibility/delete/` + id, httpOptions).
+    pipe(
+      map((data: any) => {
+        return data;
+      }), catchError(error => {
+        console.log(error);
+        return throwError('Something went wrong');
+      })
+    );
+
+  }
+
+  deleteOrdonnance(id: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenSubject.value,
+      })
+    };
+    return this.http.delete(`${environment.apiUrl}/api/doctor/ordonnance/delete/` + id, httpOptions).
     pipe(
       map((data: any) => {
         return data;

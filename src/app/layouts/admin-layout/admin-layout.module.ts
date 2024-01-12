@@ -33,6 +33,10 @@ import { ViewFolderComponent } from 'src/app/pages/doctors/folders/view-folder/v
 import { DeleteFolderComponent } from 'src/app/pages/doctors/folders/delete-folder/delete-folder.component';
 import { AddPatientComponent } from 'src/app/pages/patients/add-patient/add-patient.component';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { OrdonancesComponent } from 'src/app/pages/doctors/ordonances/ordonances.component';
+import { ViewOrdonnanceComponent } from 'src/app/pages/doctors/ordonances/view-ordonnance/view-ordonnance.component';
+import { DeleteOrdonnanceComponent } from 'src/app/pages/doctors/ordonances/delete-ordonnance/delete-ordonnance.component';
+import { AddOrdonnanceComponent } from 'src/app/pages/doctors/ordonances/add-ordonnance/add-ordonnance.component';
 // import { ToastrModule } from 'ngx-toastr';
 // import {
 //   MatFormFieldModule,
@@ -74,7 +78,11 @@ import { DoctorService } from 'src/app/services/doctor.service';
     AddFolderComponent,
     ViewFolderComponent,
     DeleteFolderComponent,
-    AddPatientComponent
+    AddPatientComponent,
+    OrdonancesComponent,
+    AddOrdonnanceComponent,
+    ViewOrdonnanceComponent,
+    DeleteOrdonnanceComponent
   ],
   providers:[DoctorService]
 })
