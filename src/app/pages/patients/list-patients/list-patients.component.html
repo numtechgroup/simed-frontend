@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let patient of fetchedPatients">
+              <tr *ngFor="let patient of fetchedPatients | paginate: { itemsPerPage: pageSize, currentPage: p }">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
@@ -73,7 +73,12 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
+          <div class="float-right"> <!-- ou bien utilisez "text-right" -->
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+        <!-- <div class="card-footer py-4">
+          <nav aria-label="..." (pageChange)="p = $event">
             <ul class="pagination justify-content-end mb-0">
               <li class="page-item disabled">
                 <a class="page-link" href="javascript:void(0)" tabindex="-1">
@@ -96,7 +101,13 @@
               </li>
             </ul>
           </nav>
-        </div>
+        </div> -->
+        <!-- <mat-paginator #paginator [pageSizeOptions]="[4]"
+        [length]="totalRecords"
+        [pageIndex]="pageIndex"
+        (page)="onPaginateChange($event)"
+        aria-label="Select page">
+    </mat-paginator> -->
       </div>
     </div>
   </div>

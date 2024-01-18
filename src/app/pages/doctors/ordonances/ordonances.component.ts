@@ -15,6 +15,9 @@ import { DeleteOrdonnanceComponent } from './delete-ordonnance/delete-ordonnance
 export class OrdonancesComponent implements OnInit  {
 
   ordonnances: any;
+  p: number = 1;
+  currentPage: number = 1;
+  pageSize = 4;
 
   constructor(private doctorService: DoctorService,private dialog: MatDialog){
 

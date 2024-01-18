@@ -11,6 +11,9 @@ import { DoctorService } from 'src/app/services/doctor.service';
 export class DoctorsComponent implements OnInit {
 
   fetchedDoctors : any;
+  p: number = 1;
+  currentPage: number = 1;
+  pageSize = 4;
     constructor(private readonly doctorService : DoctorService){}
 
   ngOnInit() {

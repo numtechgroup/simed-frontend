@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Patient } from 'src/app/models/patient';
 import { PatientService } from 'src/app/services/patient.service';
 import { AddPatientComponent } from '../add-patient/add-patient.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list-patients',
@@ -10,7 +11,14 @@ import { AddPatientComponent } from '../add-patient/add-patient.component';
   styleUrls: ['./list-patients.component.scss']
 })
 export class ListPatientsComponent implements OnInit {
-    fetchedPatients: any;
+    fetchedPatients: any[] = [];
+    p: number = 1;
+    currentPage: number = 1;
+    pageSize = 4;
+    pageIndex = 0;
+    totalRecords: number = 0;
+
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
       constructor(private patientService: PatientService, private dialog: MatDialog){
 
@@ -24,6 +32,8 @@ export class ListPatientsComponent implements OnInit {
           next: (response: Patient[] | null) => {
             if (response !== null) {
               this.fetchedPatients = response;
+              this.totalRecords = response.length;
+              this.paginator.length = this.totalRecords;
             } else {
               console.log('error :', response)
             }
@@ -36,4 +46,16 @@ export class ListPatientsComponent implements OnInit {
       openDialog(){
         this.dialog.open(AddPatientComponent);
       }
+      pageChange(event: any) {
+        this.currentPage = event.pageIndex + 1;
+      }
+      onPaginateChange(event: any) {
+        this.pageIndex = event.pageIndex;
+        this.pageSize = event.pageSize;
+        // Fetch data only if needed
+        if (this.currentPage !== this.pageIndex + 1) {
+          this.getPatients();
+        }
+      }
+
 }

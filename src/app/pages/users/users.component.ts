@@ -12,6 +12,9 @@ import { AddUserComponent } from './add-user/add-user.component';
 })
 export class UsersComponent {
   fetchedUser : any;
+  p: number = 1;
+  currentPage: number = 1;
+  pageSize = 4;
 
    constructor(public dialog: MatDialog,
                 private _userService: UserService) { }

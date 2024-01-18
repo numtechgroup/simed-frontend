@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MatIconModule } from '@angular/material/icon'
 import { MatRadioModule } from '@angular/material/radio';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/admin/dashboard/dashboard.component';
@@ -50,13 +51,15 @@ import { AddOrdonnanceComponent } from 'src/app/pages/doctors/ordonances/add-ord
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    NgxPaginationModule,
     ClipboardModule,
     FullCalendarModule,
     MatInputModule,
     MatDialogModule,
     MatIconModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ],
   declarations: [
     DashboardComponent,

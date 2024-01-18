@@ -97,7 +97,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of fetchedUser">
+              <tr *ngFor="let user of fetchedUser | paginate: { itemsPerPage: pageSize, currentPage: p }">
                 <th scope="row">
                   <div class="media align-items-center">
                      <div class="media-body">
@@ -137,6 +137,11 @@
           </table>
         </div>
         <div class="card-footer py-4">
+          <div class="float-right"> <!-- ou bien utilisez "text-right" -->
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+        <!-- <div class="card-footer py-4">
           <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
               <li class="page-item disabled">
@@ -160,7 +165,7 @@
               </li>
             </ul>
           </nav>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
